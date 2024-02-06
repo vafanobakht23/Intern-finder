@@ -1,0 +1,111 @@
+module.exports = {
+  root: true,
+  env: { browser: true, es2020: true },
+  extends: [
+    "react-app",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:you-dont-need-momentjs/recommended",
+    "plugin:cypress/recommended",
+  ].concat(isProduction ? ["prettier"] : []),
+  globals: {
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
+  },
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: "module",
+    project: "./tsconfig.json",
+  },
+  plugins: ["react", "@typescript-eslint", "jsx-a11y", "prettier", "cypress"],
+  settings: {
+    "import/resolver": {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+    react: {
+      pragma: "React",
+      version: "detect",
+    },
+  },
+  rules: {
+    "no-unused-vars": "off",
+    "func-names": "off",
+    "no-console": isProduction ? "error" : "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-use-before-define": "off",
+    "no-unused-expressions": "off",
+    "no-plusplus": "off",
+    "max-classes-per-file": "off",
+    "no-nested-ternary": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-unused-expressions": ["error"],
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "default",
+        format: ["camelCase", "UPPER_CASE", "PascalCase"],
+      },
+      {
+        selector: "variable",
+        format: ["camelCase", "UPPER_CASE", "PascalCase"],
+        leadingUnderscore: "allow",
+      },
+      {
+        selector: "variable",
+        types: ["function"],
+        format: ["camelCase", "UPPER_CASE", "PascalCase"],
+      },
+      {
+        selector: "variable",
+        types: ["boolean"],
+        format: ["PascalCase"],
+        prefix: ["is", "should", "has", "can", "did", "will"],
+      },
+      {
+        selector: "objectLiteralProperty",
+        format: null,
+      },
+      {
+        selector: "typeParameter",
+        format: ["PascalCase"],
+        prefix: ["T"],
+      },
+      {
+        selector: "typeLike",
+        format: ["PascalCase"],
+      },
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        singleQuote: true,
+        trailingComma: "all",
+        bracketSpacing: true,
+        jsxBracketSameLine: false,
+        endOfLine: "auto",
+      },
+    ],
+  },
+};
